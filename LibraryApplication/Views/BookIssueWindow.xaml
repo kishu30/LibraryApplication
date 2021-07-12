@@ -1,0 +1,81 @@
+﻿<Window x:Class="LibraryApplication.Views.BookIssueWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LibraryApplication.Views"
+        mc:Ignorable="d"
+        xmlns:localkk="clr-namespace:LibraryApplication.ViewModels" d:DataContext="{d:DesignInstance Type=localkk:LibraryViewModel}"
+        Title="BookIssueWindow" Height="450" Width="800" >
+    <Window.Resources>
+        <localkk:LibraryViewModel x:Key="objlibviewmodel"/>
+    </Window.Resources>
+
+    <Grid DataContext="{StaticResource objlibviewmodel}">
+        <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="6*"/>
+        <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+
+            <StackPanel>
+
+                <Label Content="Book Issue Window" HorizontalAlignment="Center"  FontSize="20" FontStyle="Oblique" Foreground="Gray" Margin="10"/>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Member Code"  Width="150"/>
+                    <TextBox Name="membercode" Text="{Binding UI_MemberCode}" Width="150"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Member Name"   Width="150" />
+                    <TextBlock Text="{Binding UI_MemmberName}" Width="150"/>
+                    <Label Content="Member Type" Width="150"/>
+                    <TextBlock  Text="{Binding UI_MemberType}" Width="150"/>
+
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="No of Book Allowed"  Width="150" />
+                    <TextBlock Text="{Binding UI_NoOfBookAllowed,UpdateSourceTrigger=PropertyChanged}" Width="150" />
+                    <Label Content="No Of Book Issued" />
+                    <TextBlock Text="{Binding UI_NoOfBookIssued,UpdateSourceTrigger=PropertyChanged}" Width="150"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Book Code" />
+                    <TextBox Text="{Binding UI_BookCode}" Width="150" />
+
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="BookName"   />
+                    <TextBlock Text="{Binding UI_BookName}" Width="150"/>
+                    <Label Content="Author"  />
+                    <TextBlock Text="{Binding UI_BookAuthor}"  Width="150"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Issue date"  />
+                    <DatePicker Name="issuedate"  />
+                    <Label Content="due date of retun"   />
+                    <TextBlock Width="150"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+
+                    <Button Name="issuebtn" Content="Issue" Margin="50" Height="30" Width="70" FontStyle="Normal" FontSize="20" Command="{Binding IssueCommand}"/>
+                    <Button Name="clearbtn" Content="Clear" Margin="50" Height="30" Width="70" FontStyle="Normal" FontSize="20"/>
+
+                </StackPanel>
+
+
+
+
+
+
+            </StackPanel>
+
+        </Grid>
+              
+        
+        
+
+        <DataGrid Grid.Column="1" ItemsSource="{Binding BookList}" AutoGenerateColumns="True" />
+
+    </Grid>
+</Window>
